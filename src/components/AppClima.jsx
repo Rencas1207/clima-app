@@ -1,3 +1,4 @@
+import Formulario from "./Formulario";
 
 export default function AppClima() {
    return (
