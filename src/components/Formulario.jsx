@@ -4,7 +4,7 @@ import useClima from "../hooks/useClima"
 export default function Formulario() {
 
    const [alerta, setAlerta] = useState('');
-   const { search, datosBusqueda, fetchClima } = useClima();
+   const { search, datosBusqueda, fetchClima, setResult } = useClima();
    const { city, country } = search;
 
    const handleSubmit = (e) => {
@@ -17,6 +17,7 @@ export default function Formulario() {
 
       setAlerta('');
       fetchClima(search);
+      setResult({});
    }
 
    return (

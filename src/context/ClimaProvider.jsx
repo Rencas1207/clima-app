@@ -10,6 +10,8 @@ export const ClimaProvider = ({ children }) => {
       country: ''
    })
    const [result, setResult] = useState({});
+   const [loading, setLoading] = useState(false);
+   const [noResult, setNoResult] = useState(false);
 
    const datosBusqueda = (e) => {
       setSearch({
@@ -19,6 +21,8 @@ export const ClimaProvider = ({ children }) => {
    }
 
    const fetchClima = async (datos) => {
+      setLoading(true);
+      setNoResult(false);
       try {
          const { city, country } = datos;
 
@@ -36,7 +40,9 @@ export const ClimaProvider = ({ children }) => {
          setResult(dataClima);
 
       } catch (error) {
-         console.log(error);
+         setNoResult('No hay resultados :(');
+      } finally {
+         setLoading(false);
       }
    }
 
@@ -46,7 +52,10 @@ export const ClimaProvider = ({ children }) => {
             search,
             datosBusqueda,
             fetchClima,
-            result
+            setResult,
+            result,
+            loading,
+            noResult
          }}
       >
          {children}
